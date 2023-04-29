@@ -1,6 +1,6 @@
 import Editor from "@/Components/Code/CodeEditor";
 import EditorNavBar from "@/Components/Code/EditorNavBar";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 export const languages = [
     "C++",
     "Java",
@@ -33,11 +33,10 @@ function maxInArrays(arr) {
 }
 
 console.log(maxInArrays(arr));`;
-const code = () => {
+const Code = () => {
     const [language, setlanguage] = useState("Javascript");
-    const [editorValue, setEditorValue] = useState(defaultEditorValue)
-    
-    
+    const [editorValue, setEditorValue] = useState(defaultEditorValue);
+
     return (
         <>
             <EditorNavBar
@@ -45,9 +44,13 @@ const code = () => {
                 languages={languages}
                 selectedLanguage={language}
             />
-            <Editor selectedLanguage={language} setEditorValue={setEditorValue} value={editorValue}/>
+            <Editor
+                selectedLanguage={language}
+                setEditorValue={setEditorValue}
+                value={editorValue}
+            />
         </>
     );
 };
 
-export default code;
+export default Code;
