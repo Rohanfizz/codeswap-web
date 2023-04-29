@@ -27,7 +27,7 @@ const CodeEditor = () => {
     return (
         <>
              <Editor height="90vh" defaultLanguage="javascript" defaultValue={code} />;
-}
+
         </>
     );
 };
