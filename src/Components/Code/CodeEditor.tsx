@@ -1,33 +1,44 @@
-import React from "react";
-import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
-const code = `
-let arr = [
-    [1, 2, 3],
-    [3, 4, 5],
-    [6, 7, 8],
-    [10, 2, 3],
-];
+import React, { useEffect } from "react";
+import MonacoEditor, {
+    DiffEditor,
+    useMonaco,
+    loader,
+} from "@monaco-editor/react";
 
-function maxInArrays(arr) {
-    let ans = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        let maxi = 0;
-        for (let j = 0; j < arr[i].length; j++) {
-            if (arr[i][j] > maxi) maxi = arr[i][j];
+const CodeEditor: React.FC<{
+    selectedLanguage: string;
+    setEditorValue: any;
+    value: string;
+}> = ({ selectedLanguage, setEditorValue, value }) => {
+    const monaco = useMonaco();
+    useEffect(() => {
+        // do conditional chaining
+        monaco?.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+        // or make sure that it exists by other ways
+        if (monaco) {
+            console.log("here is the monaco instance:", monaco);
         }
-        //ill be having the max elem of arr[i]th array in maxi
-        ans.push(maxi);
-    }
-    return ans;
-}
+    }, [monaco]);
 
-console.log(maxInArrays(arr));`;
-const CodeEditor = () => {
     return (
         <>
-             <Editor height="90vh" defaultLanguage="javascript" defaultValue={code} />;
-
+            <div className="h-[calc(100%-5rem)] p-0">
+                <MonacoEditor
+                    // height="100%"
+                    language={selectedLanguage.toLowerCase()}
+                    // theme="vs-dark"
+                    // defaultLanguage="javascript"
+                    defaultValue={value}
+                    options={{
+                        // readOnly: true,
+                        formatOnType: true,
+                        autoIndent: "full",
+                        formatOnPaste: true,
+                        colorDecorators: true,
+                    }}
+                    onChange={(val) => setEditorValue(() => val)}
+                />
+            </div>
         </>
     );
 };
