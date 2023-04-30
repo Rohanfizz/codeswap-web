@@ -1,6 +1,9 @@
 import Editor from "@/Components/Code/CodeEditor";
 import EditorNavBar from "@/Components/Code/EditorNavBar";
+import Alert from "@/Components/UI/Alert";
+import { alertAtom } from "@/store/ui";
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 export const languages = [
     "C++",
     "Java",
@@ -36,19 +39,38 @@ console.log(maxInArrays(arr));`;
 const Code = () => {
     const [language, setlanguage] = useState("Javascript");
     const [editorValue, setEditorValue] = useState(defaultEditorValue);
-
+    const [textCopyAlert, settextCopyAlert] = useState(false);
+    const [shareRoomAlert, setshareRoomAlert] = useState(false);
     return (
         <>
             <EditorNavBar
                 setLanguage={setlanguage}
                 languages={languages}
                 selectedLanguage={language}
+                editorValue={editorValue}
+                roomId={"a12z63"}
+                setshareRoomAlert={setshareRoomAlert}
+                settextCopyAlert={settextCopyAlert}
             />
             <Editor
                 selectedLanguage={language}
                 setEditorValue={setEditorValue}
                 value={editorValue}
             />
+            {textCopyAlert && (
+                <Alert
+                    type={"textcopy"}
+                    isOpen={textCopyAlert}
+                    setIsOpen={settextCopyAlert}
+                />
+            )}
+            {shareRoomAlert && (
+                <Alert
+                    type={"shareroom"}
+                    isOpen={shareRoomAlert}
+                    setIsOpen={setshareRoomAlert}
+                />
+            )}
         </>
     );
 };

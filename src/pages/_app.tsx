@@ -2,13 +2,13 @@ import "@/styles/globals.css";
 import { useState } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import type { AppProps } from "next/app";
-import { RecoilRoot, useRecoilValue } from "recoil";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 import Navbar from "@/Components/Navbar/Navbar";
-import { themeAtom } from "@/store/ui";
+import Alert from "@/Components/UI/Alert";
 export default function App({ Component, pageProps }: AppProps) {
     const queryClient = new QueryClient();
 
-    const [theme, setTheme] = useState("luxury")
+    const [theme, setTheme] = useState("default")
     return (
         <>
             <RecoilRoot>
@@ -24,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
                             <Component {...pageProps} />
                         </div>
                     </main>
+                    
                 </QueryClientProvider>
             </RecoilRoot>
         </>

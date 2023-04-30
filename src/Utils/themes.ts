@@ -1,9 +1,9 @@
 export const themes = [
+    "default",
     "light",
     "dark",
     "pastel",
     "fantasy",
-    "wireframe",
     "black",
     "luxury",
     "dracula",

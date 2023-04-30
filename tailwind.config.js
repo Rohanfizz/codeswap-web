@@ -7,6 +7,27 @@ module.exports = {
     ],
     daisyui: {
         themes: [
+            {
+                default: {
+                    primary: "#164e63",
+
+                    secondary: "#d8b4fe",
+
+                    accent: "#5b9fcc",
+
+                    neutral: "#374151",
+
+                    "base-100": "#2D2031",
+
+                    info: "#4180EC",
+
+                    success: "#66E59F",
+
+                    warning: "#FCCD69",
+
+                    error: "#FB6A60",
+                },
+            },
             "light",
             "dark",
             "cupcake",
