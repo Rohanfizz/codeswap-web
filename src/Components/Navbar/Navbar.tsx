@@ -2,6 +2,7 @@ import { themes } from "@/Utils/themes";
 import { getRandomValues, randomInt } from "crypto";
 import React from "react";
 import { CgDarkMode } from "react-icons/cg";
+import { MdSwapCalls } from "react-icons/md";
 function getRndInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -13,9 +14,10 @@ const Navbar: React.FC<{ setTheme: any }> = ({ setTheme }) => {
     };
     return (
         <div className="navbar bg-secondary h-24">
-            <div className="flex-1">
-                <a className="btn btn-ghost normal-case  text-primary text-3xl">
-                    CodeSwap
+            <div className="flex-1 pl-2 h-full">
+                <a className=" flex items-center h-full normal-case  text-primary text-3xl font-bold  tracking-tight leading-none md:text-4xl lg:text-5xl ">
+                    {/* <MdSwapCalls className="ml-2 text-5xl" /> */}
+                    <text>CodeSwap</text>
                 </a>
             </div>
             <div className="flex-none">
