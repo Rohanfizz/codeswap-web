@@ -9,7 +9,7 @@ function getRndInteger(min: number, max: number) {
 const Navbar: React.FC<{ setTheme: any }> = ({ setTheme }) => {
     const themeChangeHandler = () => {
         
-        setTheme((prev) => prev=="default"?"default2":"default");
+        setTheme((prev:string) => prev=="default"?"default2":"default");
         // setTheme(() => "light");
     };
     return (
