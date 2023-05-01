@@ -27,7 +27,7 @@ const Alert: React.FC<{ type: string; setIsOpen: any; isOpen: boolean }> = ({
     return (
         <div className="toast toast-end">
             <div
-                className={`alert alert-secondary text-neutral ${alerts[type].bg}`}
+                className={`alert alert-secondary text-base-100 ${alerts[type].bg}`}
             >
                 <div>
                     <span>{alerts[type].value}</span>

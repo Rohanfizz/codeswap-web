@@ -26,6 +26,26 @@ module.exports = {
                     warning: "#FCCD69",
 
                     error: "#FB6A60",
+                    logocolor: "#FB6A60",
+                },
+                default2: {
+                    primary: "#a78bfa",
+
+                    secondary: "#bedef7",
+
+                    accent: "#0369a1",
+
+                    neutral: "#0e7490",
+
+                    "base-100": "#F0EAF0",
+
+                    info: "#264DD9",
+
+                    success: "#0f766e",
+
+                    warning: "#EC8218",
+
+                    error: "#F41A1E",
                 },
             },
             "light",
