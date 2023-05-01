@@ -1,27 +1,33 @@
 import React from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const HomePage = () => {
     const router = useRouter();
-    const codePageURL = process.env.NODE_ENV == "development" ? process.env.NEXT_PUBLIC_CODE_URL_DEV :process.env.NEXT_PUBLIC_CODE_URL_PROD;
+    const codePageURL =
+        process.env.NODE_ENV == "development"
+            ? process.env.NEXT_PUBLIC_CODE_URL_DEV
+            : process.env.NEXT_PUBLIC_CODE_URL_PROD;
     const handleClick = () => {
         router.push(`${codePageURL}/code`);
-      }
-      
+    };
+
     return (
         // <>
-        <div className=" bg-base-100 h-[calc(100vh-6rem)] flex items-center ">
+        <div className=" bg-base-100 min-h-[calc(100vh-6rem)] flex items-center ">
             {/* <section className="bg-base-100 border"> */}
             <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-                <h1 className="mb-8 text-4xl font-extrabold tracking-tight leading-none  text-accent md:text-5xl lg:text-6xl ">
+                <h1 className="lg:mb-8 md:mb-8  xs:mb-1  text-4xl font-extrabold tracking-tight leading-none  text-accent md:text-5xl lg:text-6xl ">
                     Simple Platform to share code quickly!
                 </h1>
-                <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+                <p className="mb-8 xs:mb-1 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
                     Collaborate on code in real-time with CodeSwap: the
                     effortless code-sharing platform.
                 </p>
-                <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row items-center justify-center sm:space-y-0 sm:space-x-4">
-                    <button className="btn gap-2 btn-wide btn-lg" onClick={handleClick}>
+                <div className="flex flex-col mb-8 lg:mb-16 sm:mb-4 space-y-4 sm:flex-row items-center justify-center sm:space-y-0 sm:space-x-4">
+                    <button
+                        className="btn gap-2 btn-wide btn-lg"
+                        onClick={handleClick}
+                    >
                         Share Code Now!
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +73,7 @@ const HomePage = () => {
                     <span className="font-semibold text-gray-400 uppercase">
                         FEATURED IN
                     </span>
-                    <div className="flex flex-wrap justify-center items-center mt-8 text-gray-500 sm:justify-between">
+                    <div className="flex flex-wrap justify-center items-center mt-8 text-gray-500 sm:justify-between ">
                         <a
                             href="#"
                             className="mr-5 mb-5 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-400"
