@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 
 const HomePage = () => {
     const router = useRouter();
+    console.log(process.env.NEXT_PUBLIC_CODE_URL_PROD)
     const codePageURL =
         process.env.NODE_ENV == "development"
-            ? process.env.NEXT_PUBLIC_CODE_URL_DEV
+            ? process.env.NEXT_PUBLIC_CODE_URL_PROD
             : process.env.NEXT_PUBLIC_CODE_URL_PROD;
     const handleClick = () => {
         router.push(`${codePageURL}/code`);
