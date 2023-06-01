@@ -9,6 +9,7 @@ const HomePage = () => {
         process.env.NODE_ENV == "development"
             ? process.env.NEXT_PUBLIC_CODE_URL_DEV
             : process.env.NEXT_PUBLIC_CODE_URL_PROD;
+            
     const handleClick = async () => {
         const link = `${
             process.env.NODE_ENV == "production"
