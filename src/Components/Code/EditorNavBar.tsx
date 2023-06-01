@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiCopy } from "react-icons/fi";
-import { FaRegShareSquare } from "react-icons/fa";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { AiFillRead } from "react-icons/ai";
+import { FaRegShareSquare, FaQrcode } from "react-icons/fa";
+import QrCode from "./QrCode";
 const EditorNavBar: React.FC<{
     selectedLanguage: string;
     setLanguage: any;
@@ -9,7 +12,9 @@ const EditorNavBar: React.FC<{
     settextCopyAlert: any;
     roomId: string;
     setshareRoomAlert: any;
-    patchBackend:()=>void;
+    readKey: string | null;
+    writeKey: string | null;
+    patchBackend: () => void;
 }> = ({
     selectedLanguage,
     setLanguage,
@@ -17,12 +22,40 @@ const EditorNavBar: React.FC<{
     editorValue,
     settextCopyAlert,
     roomId,
+    readKey,
+    writeKey,
     setshareRoomAlert,
-    patchBackend
+    patchBackend,
 }) => {
+    const [showQr, setshowQr] = useState(false);
+    const [qrLink, setqrLink] = useState("");
+
+    const showWriteQrHandler = () => {
+        setqrLink(
+            () =>
+                `${
+                    process.env.NODE_ENV == "production"
+                        ? process.env.NEXT_PUBLIC_CODE_URL_PROD
+                        : process.env.NEXT_PUBLIC_CODE_URL_DEV
+                }/${writeKey}`
+        );
+        setshowQr(true);
+    };
+    const showReadQrHandler = () => {
+        setqrLink(
+            () =>
+                `${
+                    process.env.NODE_ENV == "production"
+                        ? process.env.NEXT_PUBLIC_CODE_URL_PROD
+                        : process.env.NEXT_PUBLIC_CODE_URL_DEV
+                }/${readKey}`
+        );
+        setshowQr(true);
+    };
+
     const setLanguageHandler = (language: string) => {
         setLanguage(language);
-        patchBackend()
+        patchBackend();
     };
     const handleCopyClick = () => {
         navigator.clipboard
@@ -36,14 +69,14 @@ const EditorNavBar: React.FC<{
             });
     };
     console.log(process.env.NEXT_PUBLIC_CODE_URL_PROD);
-    const handleShareClick = () => {
+    const handleWriteShareClick = () => {
         navigator.clipboard
             .writeText(
                 `${
                     process.env.NODE_ENV == "production"
                         ? process.env.NEXT_PUBLIC_CODE_URL_PROD
                         : process.env.NEXT_PUBLIC_CODE_URL_DEV
-                }${roomId}`
+                }/${writeKey}`
             )
             .then(() => {
                 setshareRoomAlert(true);
@@ -52,13 +85,62 @@ const EditorNavBar: React.FC<{
                 console.error("Error copying text to clipboard:", error);
             });
     };
+    const handleReadShareClick = () => {
+        navigator.clipboard
+            .writeText(
+                `${
+                    process.env.NODE_ENV == "production"
+                        ? process.env.NEXT_PUBLIC_CODE_URL_PROD
+                        : process.env.NEXT_PUBLIC_CODE_URL_DEV
+                }/${readKey}`
+            )
+            .then(() => {
+                setshareRoomAlert(true);
+            })
+            .catch((error) => {
+                console.error("Error copying text to clipboard:", error);
+            });
+    };
+
     return (
         <>
+            {showQr && <QrCode link={qrLink} setshowQr={setshowQr} />}
             <div className=" h-[5rem]  bg-primary flex bg-primry justify-between items-center pl-2 pr-2 max-w-screen">
                 <div>
-                    <button className="btn mr-2" onClick={handleShareClick}>
-                        <FaRegShareSquare className="text-2xl " />
-                    </button>
+                    {writeKey && (
+                        <button
+                            className="btn mr-2"
+                            onClick={handleWriteShareClick}
+                        >
+                            <MdOutlineAdminPanelSettings className="text-2xl " />
+                            <FaRegShareSquare className="text-2xl " />
+                        </button>
+                    )}
+                    {readKey && (
+                        <button
+                            className="btn mr-2"
+                            onClick={handleReadShareClick}
+                        >
+                            <FaRegShareSquare className="text-2xl " />
+                        </button>
+                    )}
+                    {writeKey && (
+                        <button
+                            className="btn mr-2"
+                            onClick={showWriteQrHandler}
+                        >
+                            <MdOutlineAdminPanelSettings className="text-2xl " />
+                            <FaQrcode className="text-2xl " />
+                        </button>
+                    )}
+                    {readKey && (
+                        <button
+                            className="btn mr-2"
+                            onClick={showReadQrHandler}
+                        >
+                            <FaQrcode className="text-2xl " />
+                        </button>
+                    )}
                 </div>
                 <div className="flex">
                     <div>

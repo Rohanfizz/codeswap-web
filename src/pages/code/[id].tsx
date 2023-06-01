@@ -9,7 +9,7 @@ import { MdHomeRepairService } from "react-icons/md";
 export const languages = [
     "C++",
     "Java",
-    "Javascript",
+    "JavaScript",
     "HTML",
     "CSS",
     "Python",
@@ -41,6 +41,7 @@ console.log(maxInArrays(arr));`;
 
 const Code = ({ data, status, readKey, writeKey  }: any) => {
     const router = useRouter();
+    console.log(data?.language);
     const [language, setlanguage] = useState(data?.language);
     const [editorValue, setEditorValue] = useState(data?.value);
     const [textCopyAlert, settextCopyAlert] = useState(false);
@@ -79,6 +80,8 @@ const Code = ({ data, status, readKey, writeKey  }: any) => {
                 selectedLanguage={language}
                 editorValue={editorValue}
                 roomId={id}
+                readKey={readKey}
+                writeKey={writeKey}
                 setshareRoomAlert={setshareRoomAlert}
                 settextCopyAlert={settextCopyAlert}
                 patchBackend={patchBackend}

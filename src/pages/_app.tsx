@@ -6,7 +6,7 @@ import { RecoilRoot } from "recoil";
 import Navbar from "@/Components/Navbar/Navbar";
 export default function App({ Component, pageProps }: AppProps) {
     const queryClient = new QueryClient();
-
+    
     const [theme, setTheme] = useState("default")
     return (
         <>

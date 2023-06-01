@@ -1,8 +1,11 @@
 import React from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { isLoadingAtom } from "../../../store/ui";
+import { useRecoilState } from "recoil";
 
 const HomePage = () => {
+    const [isLoading, setisLoading] = useRecoilState(isLoadingAtom);
     const router = useRouter();
     console.log(process.env.NEXT_PUBLIC_CODE_URL_PROD);
     const codePageURL =
@@ -199,7 +202,7 @@ const HomePage = () => {
                         </a>
                     </div>
                     <div className="font-semibold text-gray-400 mt-8">
-                        Made With ❤ By Rohan Sharma
+                        Made With ❤ By Rohan Sharma, Ashutosh Negi and Piyush Pandey
                     </div>
                 </div>
             </div>
