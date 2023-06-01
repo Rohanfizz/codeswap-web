@@ -9,6 +9,7 @@ const EditorNavBar: React.FC<{
     settextCopyAlert: any;
     roomId: string;
     setshareRoomAlert: any;
+    patchBackend:()=>void;
 }> = ({
     selectedLanguage,
     setLanguage,
@@ -17,9 +18,11 @@ const EditorNavBar: React.FC<{
     settextCopyAlert,
     roomId,
     setshareRoomAlert,
+    patchBackend
 }) => {
     const setLanguageHandler = (language: string) => {
         setLanguage(language);
+        patchBackend()
     };
     const handleCopyClick = () => {
         navigator.clipboard

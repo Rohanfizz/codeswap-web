@@ -9,17 +9,28 @@ const CodeEditor: React.FC<{
     selectedLanguage: string;
     setEditorValue: any;
     value: string;
-}> = ({ selectedLanguage, setEditorValue, value }) => {
+    isReadOnly: boolean;
+    patchBackend: () => void;
+}> = ({
+    selectedLanguage,
+    setEditorValue,
+    value,
+    isReadOnly,
+    patchBackend,
+}) => {
     const monaco = useMonaco();
     useEffect(() => {
         // do conditional chaining
         monaco?.languages.typescript.javascriptDefaults.setEagerModelSync(true);
         // or make sure that it exists by other ways
         if (monaco) {
-            console.log("here is the monaco instance:", monaco);
+            // console.log("here is the monaco instance:", monaco);
         }
     }, [monaco]);
-
+    const onChangeHandler = (val: any) => {
+        setEditorValue(() => val);
+        patchBackend();
+    };
     return (
         <>
             <div className="h-[calc(100%-5rem)] p-0">
@@ -30,13 +41,13 @@ const CodeEditor: React.FC<{
                     // defaultLanguage="javascript"
                     defaultValue={value}
                     options={{
-                        // readOnly: true,
                         formatOnType: true,
                         autoIndent: "full",
                         formatOnPaste: true,
                         colorDecorators: true,
+                        readOnly: isReadOnly,
                     }}
-                    onChange={(val) => setEditorValue(() => val)}
+                    onChange={onChangeHandler}
                 />
             </div>
         </>
