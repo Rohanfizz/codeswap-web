@@ -24,6 +24,7 @@ const HomePage = () => {
                 url: link,
             });
             const writeKey = response.data.writeKey;
+            console.log(response.data);
             router.push({
                 pathname: `${codePageURL}/${writeKey}`,
             });
