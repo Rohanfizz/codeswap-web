@@ -51,8 +51,8 @@ const Code = ({ data, status, readKey, writeKey  }: any) => {
     const { id }: any = router.query;
     const isReadOnly = id[id.length - 1] == "r";
 
-    // console.log(readKey);
-    // console.log(writeKey);
+    console.log(readKey);
+    console.log(writeKey);
     const patchBackend = async () => {
         const link = `${
             process.env.NODE_ENV == "production"
