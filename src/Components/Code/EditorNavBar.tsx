@@ -127,7 +127,7 @@ const EditorNavBar: React.FC<{
                             <FaRegShareSquare className="text-2xl " />
                         </button>
                     )}
-                    {writeKey && (
+                    {/* {writeKey && (
                         <button
                             className="btn mr-2"
                             onClick={showWriteQrHandler}
@@ -135,7 +135,7 @@ const EditorNavBar: React.FC<{
                             <MdOutlineAdminPanelSettings className="text-2xl " />
                             <FaQrcode className="text-2xl " />
                         </button>
-                    )}
+                    )} */}
                     {readKey && (
                         <button
                             className="btn mr-2"
