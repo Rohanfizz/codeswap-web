@@ -17,12 +17,14 @@ const Navbar: React.FC<{ setTheme: any }> = ({ setTheme }) => {
     return (
         <div className="navbar bg-secondary h-24">
             <div className="flex-1 pl-2 h-full">
-                <a className=" flex items-center h-full normal-case text-gray-600 text-3xl font-bold  tracking-tight leading-none md:text-4xl lg:text-5xl " href="/">
+                <Link
+                    className=" flex items-center h-full normal-case text-gray-600 text-3xl font-bold  tracking-tight leading-none md:text-4xl lg:text-5xl "
+                    href="/"
+                >
                     {/* <MdSwapCalls className="ml-2 text-5xl" /> */}
-                    
-                        <text>CodeSwap</text>
-                    
-                </a>
+
+                    <text>CodeSwap</text>
+                </Link>
             </div>
             <div className="flex-none">
                 <ul className=" menu menu-horizontal px-1">
