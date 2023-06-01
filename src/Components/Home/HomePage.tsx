@@ -9,21 +9,28 @@ const HomePage = () => {
         process.env.NODE_ENV == "development"
             ? process.env.NEXT_PUBLIC_CODE_URL_DEV
             : process.env.NEXT_PUBLIC_CODE_URL_PROD;
-            
+
     const handleClick = async () => {
-        const link = `${
-            process.env.NODE_ENV == "production"
-                ? process.env.NEXT_PUBLIC_BACKEND_URL_PROD
-                : process.env.NEXT_PUBLIC_BACKEND_URL_DEV
-        }/api/room/`;
-        const response = await axios({
-            method: "post",
-            url: link,
-        });
-        const writeKey = response.data.writeKey;
-        router.push({
-            pathname: `${codePageURL}/${writeKey}`,
-        });
+        try {
+            const link = `${
+                process.env.NODE_ENV == "production"
+                    ? process.env.NEXT_PUBLIC_BACKEND_URL_PROD
+                    : process.env.NEXT_PUBLIC_BACKEND_URL_DEV
+            }/api/room/`;
+            console.log(link);
+
+            const response = await axios({
+                method: "post",
+                url: link,
+            });
+            const writeKey = response.data.writeKey;
+            router.push({
+                pathname: `${codePageURL}/${writeKey}`,
+            });
+        } catch (error) {
+            // Handle the error
+            console.error(error);
+        }
     };
 
     return (
