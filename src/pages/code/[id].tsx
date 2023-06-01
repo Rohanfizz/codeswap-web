@@ -39,7 +39,7 @@ function maxInArrays(arr) {
 
 console.log(maxInArrays(arr));`;
 
-const Code = ({ data, status, readKey, writeKey  }: any) => {
+const Code = ({ data, status, readKey, writeKey }: any) => {
     const router = useRouter();
     console.log(data?.language);
     const [language, setlanguage] = useState(data?.language);
@@ -76,6 +76,7 @@ const Code = ({ data, status, readKey, writeKey  }: any) => {
         <>
             <EditorNavBar
                 setLanguage={setlanguage}
+                language={language}
                 languages={languages}
                 selectedLanguage={language}
                 editorValue={editorValue}
@@ -129,7 +130,9 @@ export async function getServerSideProps({ params }: any) {
             url: link,
         });
         const readKey: string = response.data.readKey;
-        const writeKey: string = response.data.writeKey ?response.data.writeKey:null;
+        const writeKey: string = response.data.writeKey
+            ? response.data.writeKey
+            : null;
 
         // Pass the fetched data as props to the component
         return {

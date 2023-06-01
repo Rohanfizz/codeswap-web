@@ -20,6 +20,10 @@ const CodeEditor: React.FC<{
 }) => {
     const monaco = useMonaco();
     useEffect(() => {
+        patchBackend();
+    }, [value]);
+
+    useEffect(() => {
         // do conditional chaining
         monaco?.languages.typescript.javascriptDefaults.setEagerModelSync(true);
         // or make sure that it exists by other ways
@@ -29,7 +33,6 @@ const CodeEditor: React.FC<{
     }, [monaco]);
     const onChangeHandler = (val: any) => {
         setEditorValue(() => val);
-        patchBackend();
     };
     return (
         <>

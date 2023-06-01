@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiCopy } from "react-icons/fi";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { AiFillRead } from "react-icons/ai";
@@ -8,6 +8,7 @@ const EditorNavBar: React.FC<{
     selectedLanguage: string;
     setLanguage: any;
     languages: string[];
+    language: string;
     editorValue: string;
     settextCopyAlert: any;
     roomId: string;
@@ -19,6 +20,7 @@ const EditorNavBar: React.FC<{
     selectedLanguage,
     setLanguage,
     languages,
+    language,
     editorValue,
     settextCopyAlert,
     roomId,
@@ -29,7 +31,9 @@ const EditorNavBar: React.FC<{
 }) => {
     const [showQr, setshowQr] = useState(false);
     const [qrLink, setqrLink] = useState("");
-
+    useEffect(() => {
+        patchBackend();
+    }, [language]);
     const showWriteQrHandler = () => {
         setqrLink(
             () =>
@@ -55,7 +59,6 @@ const EditorNavBar: React.FC<{
 
     const setLanguageHandler = (language: string) => {
         setLanguage(language);
-        patchBackend();
     };
     const handleCopyClick = () => {
         navigator.clipboard
