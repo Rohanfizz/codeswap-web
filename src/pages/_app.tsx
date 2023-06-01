@@ -2,9 +2,8 @@ import "@/styles/globals.css";
 import { useState } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import type { AppProps } from "next/app";
-import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { RecoilRoot } from "recoil";
 import Navbar from "@/Components/Navbar/Navbar";
-import Alert from "@/Components/UI/Alert";
 export default function App({ Component, pageProps }: AppProps) {
     const queryClient = new QueryClient();
 
